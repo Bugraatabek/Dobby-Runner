@@ -1,18 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputReader : MonoBehaviour
+namespace Runner.Control
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InputReader : MonoBehaviour
     {
-        
-    }
+        public static InputReader instance;
+        private FixedJoystick _fixedJoystick;
+        public event Action<float> input; 
 
-    // Update is called once per frame
-    void Update()
-    {
         
+        private void Awake() 
+        {
+            if(instance)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
+
+            _fixedJoystick = GameObject.FindWithTag("Joystick").GetComponent<FixedJoystick>();
+        }
+
+        void Update()
+        {
+            if(_fixedJoystick.Horizontal != 0)
+            {
+                input.Invoke(_fixedJoystick.Horizontal);
+            }
+        }
     }
 }
+
