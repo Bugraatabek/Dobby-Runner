@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace combat.ui
+namespace Aleyna.Combat
 {
-
     public class CombatUIScript : MonoBehaviour
     {
+
         public Image dobbyHealthBar;
         float dobbyHealth = 100f;
         bool touchedEnemy = false;
@@ -22,13 +22,13 @@ namespace combat.ui
 
         void Update()
         {
-            dobbyHealthBar.fillAmount = dobbyHealth/100f;
-           
+            dobbyHealthBar.fillAmount = dobbyHealth / 100f;
+
         }
-        
-        void healthStatus(float Amount)
+
+        public void healthStatus(float Amount)
         {
-            if (dobbyHealth <=100)
+            if (dobbyHealth <= 100)
             {
                 if (touchedEnemy == true)
                 {
@@ -37,7 +37,7 @@ namespace combat.ui
                     Debug.Log(dobbyHealthBar.fillAmount);
                 }
             }
-            
+
             if (dobbyHealth <= 0)
             {
                 Debug.Log("It is died");
@@ -54,12 +54,10 @@ namespace combat.ui
             if (other.gameObject.CompareTag("Enemy"))
             {
                 touchedEnemy = true;
-                healthStatus(amount*2.5f);
+                healthStatus(amount * 2.5f);
             }
 
 
         }
-        
     }
 }
-
