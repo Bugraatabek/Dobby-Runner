@@ -10,7 +10,6 @@ namespace combat.ui
     {
         public Image dobbyHealthBar;
         float dobbyHealth = 100f;
-        public GameObject enemyBullet,enemy;
         bool touchedEnemy = false;
         [SerializeField]
         float amount;
@@ -46,16 +45,16 @@ namespace combat.ui
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject == enemyBullet)
+            if (other.gameObject.CompareTag("EnemyBullet"))
             {
                 touchedEnemy = true;
                 Destroy(other.gameObject);
                 healthStatus(amount);
             }
-            if (other.gameObject == enemy)
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 touchedEnemy = true;
-                healthStatus(amount*3f);
+                healthStatus(amount*2.5f);
             }
 
 
