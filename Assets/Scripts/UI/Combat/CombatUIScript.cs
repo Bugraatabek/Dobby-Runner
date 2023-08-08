@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Aleyna.Combat
+namespace Aleyna.UI
 {
     public class CombatUIScript : MonoBehaviour
     {
 
         public Image dobbyHealthBar,damageImage;
         float dobbyHealth = 100f;
-        float damageValue = 0;
+        float damageValue = 0.1f;
         bool touchedEnemy = false;
         bool touchedSocks = false;
         [SerializeField]
@@ -25,7 +25,7 @@ namespace Aleyna.Combat
         void Update()
         {
             dobbyHealthBar.fillAmount = dobbyHealth / 100f;
-
+            
         }
 
         public void healthStatus(float Amount)
@@ -49,7 +49,8 @@ namespace Aleyna.Combat
         {
             if (touchedSocks == true)
             {
-                damageImage.fillAmount += 10f/100f;
+                
+                damageImage.fillAmount += damageValue;
                 if (damageImage.fillAmount >= 1)
                 {
                     Debug.Log("Damage");
@@ -73,6 +74,7 @@ namespace Aleyna.Combat
             {
                 touchedSocks = true;
                 damageStatus();
+                other.gameObject.SetActive(false);
             }
 
 

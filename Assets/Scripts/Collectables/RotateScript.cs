@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Aleyna.VFX;
 
 namespace Aleyna.Collectables
 {
@@ -12,6 +13,7 @@ namespace Aleyna.Collectables
         GameObject rotatingObject1,rotatingObject2;
         void Start()
         {
+            
             rotatingObject1 = GameObject.FindGameObjectWithTag("coin");
             rotatingObject2 = GameObject.FindGameObjectWithTag("socks");
         }
