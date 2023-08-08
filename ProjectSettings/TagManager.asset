@@ -6,6 +6,8 @@ TagManager:
   tags:
   - EnemyBullet
   - Enemy
+  - coin
+  - socks
   layers:
   - Default
   - TransparentFX

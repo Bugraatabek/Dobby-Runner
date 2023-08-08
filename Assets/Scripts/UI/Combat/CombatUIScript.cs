@@ -8,9 +8,11 @@ namespace Aleyna.Combat
     public class CombatUIScript : MonoBehaviour
     {
 
-        public Image dobbyHealthBar;
+        public Image dobbyHealthBar,damageImage;
         float dobbyHealth = 100f;
+        float damageValue = 0;
         bool touchedEnemy = false;
+        bool touchedSocks = false;
         [SerializeField]
         float amount;
         void Start()
@@ -43,6 +45,17 @@ namespace Aleyna.Combat
                 Debug.Log("It is died");
             }
         }
+        public void damageStatus()
+        {
+            if (touchedSocks == true)
+            {
+                damageImage.fillAmount += 10f/100f;
+                if (damageImage.fillAmount >= 1)
+                {
+                    Debug.Log("Damage");
+                }
+            }
+        }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("EnemyBullet"))
@@ -55,6 +68,11 @@ namespace Aleyna.Combat
             {
                 touchedEnemy = true;
                 healthStatus(amount * 2.5f);
+            }
+            if (other.gameObject.CompareTag("socks"))
+            {
+                touchedSocks = true;
+                damageStatus();
             }
 
 
